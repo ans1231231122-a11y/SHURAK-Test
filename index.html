@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>شُرَاك | SHURAK - سوقك الطلابي</title>
+  <meta name="description" content="شُرَاك - سوقك الطلابي الأول للبيع والشراء والتبادل بين الطلاب بكل سهولة" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- الشريط العلوي -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="/" class="logo" aria-label="شُرَاك الرئيسية">
+        <div class="logo-icon">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 14C12 10.6863 14.6863 8 18 8H30C33.3137 8 36 10.6863 36 14V18H40C42.2091 18 44 19.7909 44 22V38C44 40.2091 42.2091 42 40 42H8C5.79086 42 4 40.2091 4 38V22C4 19.7909 5.79086 18 8 18H12V14Z" fill="#0A2540"/>
+            <path d="M16 22H32V38H16V22Z" fill="#1E6BFF"/>
+            <path d="M20 14H28V22H20V14Z" fill="#0A2540"/>
+            <circle cx="24" cy="30" r="4" fill="white"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-name">شُرَاك</span>
+          <span class="logo-sub">SHURAK</span>
+        </div>
+      </a>
+
+      <div class="search-box">
+        <input type="search" id="searchInput" placeholder="ابحث عن منتج..." autocomplete="off" />
+        <button type="button" id="searchBtn" aria-label="بحث">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="header-actions">
+        <button id="loginBtn" class="btn btn-outline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+          </svg>
+          تسجيل الدخول
+        </button>
+
+        <button id="accountBtn" class="btn btn-ghost hidden">
+          <img id="userAvatar" src="" alt="" class="avatar" />
+          <span id="userName">حسابي</span>
+        </button>
+
+        <button id="cartBtn" class="btn btn-cart" aria-label="السلة">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span id="cartCount" class="cart-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- الواجهة الرئيسية (Hero) -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <h1>كل اللي تحتاجه، في مكان واحد.</h1>
+        <p>سوقك الطلابي الأول للبيع والشراء والتبادل بين الطلاب بكل سهولة.</p>
+        <a href="#products" class="btn btn-primary btn-lg">اكتشف المنتجات</a>
+      </div>
+      <div class="hero-visual">
+        <img src="shurak-banner.jpg" alt="شُرَاك - تسوق بذكاء" class="hero-image" />
+      </div>
+    </div>
+  </section>
+
+  <!-- الأقسام -->
+  <section class="categories" id="categories">
+    <div class="container">
+      <h2 class="section-title">تصفح حسب القسم</h2>
+      <div class="categories-grid" id="categoriesGrid">
+        <!-- تُملأ من JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- المنتجات -->
+  <section class="products" id="products">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">المنتجات</h2>
+        <div class="filter-bar">
+          <button class="filter-btn active" data-category="all">الكل</button>
+          <button class="filter-btn" data-category="إلكترونيات">إلكترونيات</button>
+          <button class="filter-btn" data-category="أزياء">أزياء</button>
+          <button class="filter-btn" data-category="كتب">كتب</button>
+          <button class="filter-btn" data-category="ألعاب">ألعاب</button>
+          <button class="filter-btn" data-category="أخرى">أخرى</button>
+        </div>
+      </div>
+      <div class="products-grid" id="productsGrid">
+        <!-- تُملأ من JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- مميزات -->
+  <section class="features">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎧</div>
+          <h3>دعم متواصل 24/7</h3>
+          <p>نحن هنا لمساعدتك في أي وقت</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3>دفع آمن وموثوق</h3>
+          <p>معاملاتك محمية بالكامل</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🚚</div>
+          <h3>شحن سريع</h3>
+          <p>لكل المناطق داخل المملكة</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- السلة الجانبية -->
+  <aside id="cartSidebar" class="cart-sidebar">
+    <div class="cart-header">
+      <h3>سلة المشتريات</h3>
+      <button id="closeCart" class="btn-icon" aria-label="إغلاق">×</button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>الإجمالي</span>
+        <strong id="cartTotal">0 ريال</strong>
+      </div>
+      <button id="checkoutBtn" class="btn btn-primary btn-block">إتمام الطلب</button>
+    </div>
+  </aside>
+  <div id="cartOverlay" class="cart-overlay"></div>
+
+  <!-- نافذة حسابي -->
+  <div id="accountModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>حسابي</h3>
+        <button id="closeAccount" class="btn-icon">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="account-info">
+          <img id="accountAvatar" src="" alt="" class="avatar-lg" />
+          <h4 id="accountName">—</h4>
+          <p id="accountEmail">—</p>
+        </div>
+        <div class="account-fields">
+          <label>رقم الجوال
+            <input type="tel" id="userPhone" placeholder="05xxxxxxxx" />
+          </label>
+          <label>المدينة
+            <input type="text" id="userCity" placeholder="جدة" />
+          </label>
+          <label>العنوان
+            <textarea id="userAddress" rows="2" placeholder="الحي، الشارع..."></textarea>
+          </label>
+        </div>
+        <div class="account-actions">
+          <button id="saveProfileBtn" class="btn btn-primary">حفظ التعديلات</button>
+          <button id="logoutBtn" class="btn btn-outline">تسجيل الخروج</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <strong>شُرَاك</strong> — سوقك الطلابي
+        </div>
+        <p>© 2026 شُرَاك التجاري. جميع الحقوق محفوظة.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="firebase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

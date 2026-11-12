@@ -1,0 +1,61 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===== العملاء (customers) =====
+    // كل مستخدم يقرأ ويعدل مستنده فقط
+    match /customers/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow create: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // ===== المنتجات (products) =====
+    // الجميع يقرأ المنتجات المتاحة
+    // الكتابة فقط للإدارة أو البائع المالك
+    match /products/{productId} {
+      allow read: if true; // أو: resource.data.status == "available"
+      allow create: if request.auth != null
+                    && (get(/databases/$(database)/documents/customers/$(request.auth.uid)).data.role in ["admin", "seller"]);
+      allow update, delete: if request.auth != null
+                            && (get(/databases/$(database)/documents/customers/$(request.auth.uid)).data.role == "admin"
+                                || resource.data.sellerId == request.auth.uid);
+    }
+
+    // ===== الطلبات (orders) =====
+    match /orders/{orderId} {
+      allow read: if request.auth != null
+                  && (resource.data.userId == request.auth.uid
+                      || get(/databases/$(database)/documents/customers/$(request.auth.uid)).data.role == "admin");
+      allow create: if request.auth != null
+                    && request.resource.data.userId == request.auth.uid;
+      allow update: if request.auth != null
+                    && get(/databases/$(database)/documents/customers/$(request.auth.uid)).data.role == "admin";
+    }
+
+    // ===== المفضلة (favorites) =====
+    match /favorites/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // ===== الأقسام (categories) =====
+    match /categories/{catId} {
+      allow read: if true;
+      allow write: if request.auth != null
+                   && get(/databases/$(database)/documents/customers/$(request.auth.uid)).data.role == "admin";
+    }
+
+    // ===== البائعون (sellers) =====
+    match /sellers/{sellerId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && request.auth.uid == sellerId;
+      allow update: if request.auth != null
+                    && (request.auth.uid == sellerId
+                        || get(/databases/$(database)/documents/customers/$(request.auth.uid)).data.role == "admin");
+    }
+
+    // منع الوصول لأي مجموعة أخرى
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
